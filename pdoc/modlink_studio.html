@@ -29,12 +29,13 @@
                    pattern=".+" required>
 
 
+            <h2>Submodules</h2>
+            <ul>
+                    <li><a href="modlink_studio/app.html">app</a></li>
+            </ul>
 
             <h2>API Documentation</h2>
                 <ul class="memberlist">
-            <li>
-                    <a class="function" href="#main">main</a>
-            </li>
     </ul>
 
 
@@ -51,49 +52,26 @@
                     <h1 class="modulename">
 modlink_studio    </h1>
 
-                
+                        <div class="docstring"><p>Application entry exports for ModLink Studio.</p>
+</div>
+
                         <input id="mod-modlink_studio-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-modlink_studio-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.app</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">1</span></a><span class="sd">&quot;&quot;&quot;Application entry exports for ModLink Studio.&quot;&quot;&quot;</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">2</span></a>
-</span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;main&quot;</span><span class="p">]</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a>
+</span><span id="L-4"><a href="#L-4"><span class="linenos">4</span></a><span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">5</span></a>    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;main&quot;</span><span class="p">:</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">6</span></a>        <span class="kn">from</span><span class="w"> </span><span class="nn">.app</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">7</span></a>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">8</span></a>        <span class="k">return</span> <span class="n">main</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">9</span></a>    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;module </span><span class="si">{</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> has no attribute </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
             </section>
-                <section id="main">
-                            <input id="main-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">main</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-                <label class="view-source-button" for="main-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#main"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="main-38"><a href="#main-38"><span class="linenos">38</span></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="main-39"><a href="#main-39"><span class="linenos">39</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Single supported startup entry for ModLink Studio.&quot;&quot;&quot;</span>
-</span><span id="main-40"><a href="#main-40"><span class="linenos">40</span></a>
-</span><span id="main-41"><a href="#main-41"><span class="linenos">41</span></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">_create_application</span><span class="p">()</span>
-</span><span id="main-42"><a href="#main-42"><span class="linenos">42</span></a>    <span class="n">setTheme</span><span class="p">(</span><span class="n">Theme</span><span class="o">.</span><span class="n">AUTO</span><span class="p">)</span>
-</span><span id="main-43"><a href="#main-43"><span class="linenos">43</span></a>    <span class="n">SettingsService</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">app</span><span class="p">)</span>
-</span><span id="main-44"><a href="#main-44"><span class="linenos">44</span></a>    <span class="n">driver_factories</span> <span class="o">=</span> <span class="n">discover_driver_factories</span><span class="p">()</span>
-</span><span id="main-45"><a href="#main-45"><span class="linenos">45</span></a>    <span class="n">engine</span> <span class="o">=</span> <span class="n">ModLinkEngine</span><span class="p">(</span><span class="n">driver_factories</span><span class="o">=</span><span class="n">driver_factories</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">app</span><span class="p">)</span>
-</span><span id="main-46"><a href="#main-46"><span class="linenos">46</span></a>    <span class="n">window</span> <span class="o">=</span> <span class="n">MainWindow</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-</span><span id="main-47"><a href="#main-47"><span class="linenos">47</span></a>    <span class="n">window</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">_load_app_icon</span><span class="p">())</span>
-</span><span id="main-48"><a href="#main-48"><span class="linenos">48</span></a>    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span id="main-49"><a href="#main-49"><span class="linenos">49</span></a>    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
-</span></pre></div>
-
-
-            <div class="docstring"><p>Single supported startup entry for ModLink Studio.</p>
-</div>
-
-
-                </section>
     </main>
 <script>
     function escapeHTML(html) {

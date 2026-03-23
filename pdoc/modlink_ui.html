@@ -29,33 +29,16 @@
                    pattern=".+" required>
 
 
+            <h2>Submodules</h2>
+            <ul>
+                    <li><a href="modlink_ui/main_window.html">main_window</a></li>
+                    <li><a href="modlink_ui/pages.html">pages</a></li>
+                    <li><a href="modlink_ui/ui_settings.html">ui_settings</a></li>
+                    <li><a href="modlink_ui/widgets.html">widgets</a></li>
+            </ul>
 
             <h2>API Documentation</h2>
                 <ul class="memberlist">
-            <li>
-                    <a class="class" href="#MainWindow">MainWindow</a>
-                            <ul class="memberlist">
-                        <li>
-                                <a class="function" href="#MainWindow.__init__">MainWindow</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#MainWindow.engine">engine</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#MainWindow.main_page">main_page</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#MainWindow.device_page">device_page</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#MainWindow.settings_page">settings_page</a>
-                        </li>
-                        <li>
-                                <a class="function" href="#MainWindow.closeEvent">closeEvent</a>
-                        </li>
-                </ul>
-
-            </li>
     </ul>
 
 
@@ -72,162 +55,26 @@
                     <h1 class="modulename">
 modlink_ui    </h1>
 
-                
+                        <div class="docstring"><p>Public UI exports for ModLink Studio.</p>
+</div>
+
                         <input id="mod-modlink_ui-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-modlink_ui-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.main_window</span><span class="w"> </span><span class="kn">import</span> <span class="n">MainWindow</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">1</span></a><span class="sd">&quot;&quot;&quot;Public UI exports for ModLink Studio.&quot;&quot;&quot;</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">2</span></a>
-</span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MainWindow&quot;</span><span class="p">]</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a>
+</span><span id="L-4"><a href="#L-4"><span class="linenos">4</span></a><span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">5</span></a>    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;MainWindow&quot;</span><span class="p">:</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">6</span></a>        <span class="kn">from</span><span class="w"> </span><span class="nn">.main_window</span><span class="w"> </span><span class="kn">import</span> <span class="n">MainWindow</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">7</span></a>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">8</span></a>        <span class="k">return</span> <span class="n">MainWindow</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">9</span></a>    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;module </span><span class="si">{</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> has no attribute </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
             </section>
-                <section id="MainWindow">
-                            <input id="MainWindow-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr class">
-            
-    <span class="def">class</span>
-    <span class="name">MainWindow</span><wbr>(<span class="base">qfluentwidgets.window.fluent_window.MSFluentWindow</span>):
-
-                <label class="view-source-button" for="MainWindow-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#MainWindow"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="MainWindow-14"><a href="#MainWindow-14"><span class="linenos">14</span></a><span class="k">class</span><span class="w"> </span><span class="nc">MainWindow</span><span class="p">(</span><span class="n">MSFluentWindow</span><span class="p">):</span>
-</span><span id="MainWindow-15"><a href="#MainWindow-15"><span class="linenos">15</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Application shell for ModLink Studio.&quot;&quot;&quot;</span>
-</span><span id="MainWindow-16"><a href="#MainWindow-16"><span class="linenos">16</span></a>
-</span><span id="MainWindow-17"><a href="#MainWindow-17"><span class="linenos">17</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">:</span> <span class="n">ModLinkEngine</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="MainWindow-18"><a href="#MainWindow-18"><span class="linenos">18</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span>
-</span><span id="MainWindow-19"><a href="#MainWindow-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
-</span><span id="MainWindow-20"><a href="#MainWindow-20"><span class="linenos">20</span></a>
-</span><span id="MainWindow-21"><a href="#MainWindow-21"><span class="linenos">21</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">main_page</span> <span class="o">=</span> <span class="n">MainPage</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-</span><span id="MainWindow-22"><a href="#MainWindow-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">device_page</span> <span class="o">=</span> <span class="n">DevicePage</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-</span><span id="MainWindow-23"><a href="#MainWindow-23"><span class="linenos">23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">settings_page</span> <span class="o">=</span> <span class="n">SettingsPage</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-</span><span id="MainWindow-24"><a href="#MainWindow-24"><span class="linenos">24</span></a>
-</span><span id="MainWindow-25"><a href="#MainWindow-25"><span class="linenos">25</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addSubInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_page</span><span class="p">,</span> <span class="n">FIF</span><span class="o">.</span><span class="n">HOME</span><span class="p">,</span> <span class="s2">&quot;主页&quot;</span><span class="p">)</span>
-</span><span id="MainWindow-26"><a href="#MainWindow-26"><span class="linenos">26</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addSubInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_page</span><span class="p">,</span> <span class="n">FIF</span><span class="o">.</span><span class="n">IOT</span><span class="p">,</span> <span class="s2">&quot;设备&quot;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">NavigationItemPosition</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">)</span>
-</span><span id="MainWindow-27"><a href="#MainWindow-27"><span class="linenos">27</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addSubInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings_page</span><span class="p">,</span> <span class="n">FIF</span><span class="o">.</span><span class="n">SETTING</span><span class="p">,</span> <span class="s2">&quot;设置&quot;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">NavigationItemPosition</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">)</span>
-</span><span id="MainWindow-28"><a href="#MainWindow-28"><span class="linenos">28</span></a>
-</span><span id="MainWindow-29"><a href="#MainWindow-29"><span class="linenos">29</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">980</span><span class="p">,</span> <span class="mi">680</span><span class="p">)</span>
-</span><span id="MainWindow-30"><a href="#MainWindow-30"><span class="linenos">30</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">setMinimumSize</span><span class="p">(</span><span class="mi">920</span><span class="p">,</span> <span class="mi">640</span><span class="p">)</span>
-</span><span id="MainWindow-31"><a href="#MainWindow-31"><span class="linenos">31</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;ModLink Studio&quot;</span><span class="p">)</span>
-</span><span id="MainWindow-32"><a href="#MainWindow-32"><span class="linenos">32</span></a>
-</span><span id="MainWindow-33"><a href="#MainWindow-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">navigationInterface</span><span class="o">.</span><span class="n">setIndicatorAnimationEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="MainWindow-34"><a href="#MainWindow-34"><span class="linenos">34</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setAnimationEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="MainWindow-35"><a href="#MainWindow-35"><span class="linenos">35</span></a>
-</span><span id="MainWindow-36"><a href="#MainWindow-36"><span class="linenos">36</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QCloseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="MainWindow-37"><a href="#MainWindow-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
-</span><span id="MainWindow-38"><a href="#MainWindow-38"><span class="linenos">38</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">closeEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-</span></pre></div>
-
-
-            <div class="docstring"><p>Application shell for ModLink Studio.</p>
-</div>
-
-
-                            <div id="MainWindow.__init__" class="classattr">
-                                        <input id="MainWindow.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="name">MainWindow</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">engine</span><span class="p">:</span> <span class="n"><a href="modlink_core.html#ModLinkEngine">modlink_core.ModLinkEngine</a></span>,</span><span class="param">	<span class="n">parent</span><span class="p">:</span> <span class="n">PyQt6</span><span class="o">.</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span>)</span>
-
-                <label class="view-source-button" for="MainWindow.__init__-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#MainWindow.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="MainWindow.__init__-17"><a href="#MainWindow.__init__-17"><span class="linenos">17</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">:</span> <span class="n">ModLinkEngine</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">QWidget</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="MainWindow.__init__-18"><a href="#MainWindow.__init__-18"><span class="linenos">18</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-19"><a href="#MainWindow.__init__-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
-</span><span id="MainWindow.__init__-20"><a href="#MainWindow.__init__-20"><span class="linenos">20</span></a>
-</span><span id="MainWindow.__init__-21"><a href="#MainWindow.__init__-21"><span class="linenos">21</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">main_page</span> <span class="o">=</span> <span class="n">MainPage</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-22"><a href="#MainWindow.__init__-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">device_page</span> <span class="o">=</span> <span class="n">DevicePage</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-23"><a href="#MainWindow.__init__-23"><span class="linenos">23</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">settings_page</span> <span class="o">=</span> <span class="n">SettingsPage</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-24"><a href="#MainWindow.__init__-24"><span class="linenos">24</span></a>
-</span><span id="MainWindow.__init__-25"><a href="#MainWindow.__init__-25"><span class="linenos">25</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addSubInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_page</span><span class="p">,</span> <span class="n">FIF</span><span class="o">.</span><span class="n">HOME</span><span class="p">,</span> <span class="s2">&quot;主页&quot;</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-26"><a href="#MainWindow.__init__-26"><span class="linenos">26</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addSubInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_page</span><span class="p">,</span> <span class="n">FIF</span><span class="o">.</span><span class="n">IOT</span><span class="p">,</span> <span class="s2">&quot;设备&quot;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">NavigationItemPosition</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-27"><a href="#MainWindow.__init__-27"><span class="linenos">27</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">addSubInterface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings_page</span><span class="p">,</span> <span class="n">FIF</span><span class="o">.</span><span class="n">SETTING</span><span class="p">,</span> <span class="s2">&quot;设置&quot;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">NavigationItemPosition</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-28"><a href="#MainWindow.__init__-28"><span class="linenos">28</span></a>
-</span><span id="MainWindow.__init__-29"><a href="#MainWindow.__init__-29"><span class="linenos">29</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">980</span><span class="p">,</span> <span class="mi">680</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-30"><a href="#MainWindow.__init__-30"><span class="linenos">30</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">setMinimumSize</span><span class="p">(</span><span class="mi">920</span><span class="p">,</span> <span class="mi">640</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-31"><a href="#MainWindow.__init__-31"><span class="linenos">31</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;ModLink Studio&quot;</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-32"><a href="#MainWindow.__init__-32"><span class="linenos">32</span></a>
-</span><span id="MainWindow.__init__-33"><a href="#MainWindow.__init__-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">navigationInterface</span><span class="o">.</span><span class="n">setIndicatorAnimationEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="MainWindow.__init__-34"><a href="#MainWindow.__init__-34"><span class="linenos">34</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stackedWidget</span><span class="o">.</span><span class="n">setAnimationEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-</span></pre></div>
-
-
-    
-
-                            </div>
-                            <div id="MainWindow.engine" class="classattr">
-                                <div class="attr variable">
-            <span class="name">engine</span>
-
-        
-    </div>
-    <a class="headerlink" href="#MainWindow.engine"></a>
-    
-    
-
-                            </div>
-                            <div id="MainWindow.main_page" class="classattr">
-                                <div class="attr variable">
-            <span class="name">main_page</span>
-
-        
-    </div>
-    <a class="headerlink" href="#MainWindow.main_page"></a>
-    
-    
-
-                            </div>
-                            <div id="MainWindow.device_page" class="classattr">
-                                <div class="attr variable">
-            <span class="name">device_page</span>
-
-        
-    </div>
-    <a class="headerlink" href="#MainWindow.device_page"></a>
-    
-    
-
-                            </div>
-                            <div id="MainWindow.settings_page" class="classattr">
-                                <div class="attr variable">
-            <span class="name">settings_page</span>
-
-        
-    </div>
-    <a class="headerlink" href="#MainWindow.settings_page"></a>
-    
-    
-
-                            </div>
-                            <div id="MainWindow.closeEvent" class="classattr">
-                                        <input id="MainWindow.closeEvent-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">closeEvent</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">event</span><span class="p">:</span> <span class="n">PyQt6</span><span class="o">.</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QCloseEvent</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-                <label class="view-source-button" for="MainWindow.closeEvent-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#MainWindow.closeEvent"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="MainWindow.closeEvent-36"><a href="#MainWindow.closeEvent-36"><span class="linenos">36</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QCloseEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="MainWindow.closeEvent-37"><a href="#MainWindow.closeEvent-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
-</span><span id="MainWindow.closeEvent-38"><a href="#MainWindow.closeEvent-38"><span class="linenos">38</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">closeEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-</span></pre></div>
-
-
-            <div class="docstring"><p>closeEvent(self, a0: Optional[QCloseEvent])</p>
-</div>
-
-
-                            </div>
-                </section>
     </main>
 <script>
     function escapeHTML(html) {
