@@ -189,9 +189,6 @@
                                 <a class="variable" href="#StreamDescriptor.channel_names">channel_names</a>
                         </li>
                         <li>
-                                <a class="variable" href="#StreamDescriptor.unit">unit</a>
-                        </li>
-                        <li>
                                 <a class="variable" href="#StreamDescriptor.display_name">display_name</a>
                         </li>
                         <li>
@@ -1243,7 +1240,7 @@ consumers.</p>
                 <section id="PayloadType">
                     <div class="attr variable">
             <span class="name">PayloadType</span>        =
-<span class="default_value">typing.Literal[&#39;line&#39;, &#39;plane&#39;, &#39;video&#39;]</span>
+<span class="default_value">typing.Literal[&#39;signal&#39;, &#39;raster&#39;, &#39;field&#39;, &#39;video&#39;]</span>
 
         
     </div>
@@ -1401,21 +1398,19 @@ by the driver and is passed back to <code>connect_device()</code> unchanged.</p>
 </span><span id="StreamDescriptor-104"><a href="#StreamDescriptor-104"><span class="linenos">104</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Expected number of samples or frames per emitted chunk.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-105"><a href="#StreamDescriptor-105"><span class="linenos">105</span></a>
 </span><span id="StreamDescriptor-106"><a href="#StreamDescriptor-106"><span class="linenos">106</span></a>    <span class="n">channel_names</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
-</span><span id="StreamDescriptor-107"><a href="#StreamDescriptor-107"><span class="linenos">107</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional channel labels, usually matching axis 0 for line payloads.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-107"><a href="#StreamDescriptor-107"><span class="linenos">107</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional channel labels, usually matching axis 0 for signal payloads.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-108"><a href="#StreamDescriptor-108"><span class="linenos">108</span></a>
-</span><span id="StreamDescriptor-109"><a href="#StreamDescriptor-109"><span class="linenos">109</span></a>    <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="StreamDescriptor-110"><a href="#StreamDescriptor-110"><span class="linenos">110</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional unit string, such as ``&quot;uV&quot;`` or ``&quot;m/s^2&quot;``.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-109"><a href="#StreamDescriptor-109"><span class="linenos">109</span></a>    <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="StreamDescriptor-110"><a href="#StreamDescriptor-110"><span class="linenos">110</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional human-readable stream label.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-111"><a href="#StreamDescriptor-111"><span class="linenos">111</span></a>
-</span><span id="StreamDescriptor-112"><a href="#StreamDescriptor-112"><span class="linenos">112</span></a>    <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="StreamDescriptor-113"><a href="#StreamDescriptor-113"><span class="linenos">113</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional human-readable stream label.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-112"><a href="#StreamDescriptor-112"><span class="linenos">112</span></a>    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+</span><span id="StreamDescriptor-113"><a href="#StreamDescriptor-113"><span class="linenos">113</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Additional metadata, including payload-specific fields such as ``unit``.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-114"><a href="#StreamDescriptor-114"><span class="linenos">114</span></a>
-</span><span id="StreamDescriptor-115"><a href="#StreamDescriptor-115"><span class="linenos">115</span></a>    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
-</span><span id="StreamDescriptor-116"><a href="#StreamDescriptor-116"><span class="linenos">116</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Additional driver- or device-specific metadata.&quot;&quot;&quot;</span>
-</span><span id="StreamDescriptor-117"><a href="#StreamDescriptor-117"><span class="linenos">117</span></a>
-</span><span id="StreamDescriptor-118"><a href="#StreamDescriptor-118"><span class="linenos">118</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StreamDescriptor-119"><a href="#StreamDescriptor-119"><span class="linenos">119</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">device_id</span> <span class="o">=</span> <span class="n">normalize_device_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">)</span>
-</span><span id="StreamDescriptor-120"><a href="#StreamDescriptor-120"><span class="linenos">120</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">modality</span> <span class="o">=</span> <span class="n">normalize_modality</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modality</span><span class="p">)</span>
-</span><span id="StreamDescriptor-121"><a href="#StreamDescriptor-121"><span class="linenos">121</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_id</span> <span class="o">=</span> <span class="n">make_stream_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modality</span><span class="p">)</span>
+</span><span id="StreamDescriptor-115"><a href="#StreamDescriptor-115"><span class="linenos">115</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StreamDescriptor-116"><a href="#StreamDescriptor-116"><span class="linenos">116</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">device_id</span> <span class="o">=</span> <span class="n">normalize_device_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">)</span>
+</span><span id="StreamDescriptor-117"><a href="#StreamDescriptor-117"><span class="linenos">117</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">modality</span> <span class="o">=</span> <span class="n">normalize_modality</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modality</span><span class="p">)</span>
+</span><span id="StreamDescriptor-118"><a href="#StreamDescriptor-118"><span class="linenos">118</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_id</span> <span class="o">=</span> <span class="n">make_stream_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modality</span><span class="p">)</span>
+</span><span id="StreamDescriptor-119"><a href="#StreamDescriptor-119"><span class="linenos">119</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1429,7 +1424,7 @@ values should remain stable for the lifetime of the driver instance.</p>
                             <div id="StreamDescriptor.__init__" class="classattr">
                                 <div class="attr function">
             
-        <span class="name">StreamDescriptor</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">modality</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">payload_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;plane&#39;</span><span class="p">,</span> <span class="s1">&#39;video&#39;</span><span class="p">]</span>,</span><span class="param">	<span class="n">nominal_sample_rate_hz</span><span class="p">:</span> <span class="nb">float</span>,</span><span class="param">	<span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">channel_names</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>,</span><span class="param">	<span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
+        <span class="name">StreamDescriptor</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">modality</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">payload_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;signal&#39;</span><span class="p">,</span> <span class="s1">&#39;raster&#39;</span><span class="p">,</span> <span class="s1">&#39;field&#39;</span><span class="p">,</span> <span class="s1">&#39;video&#39;</span><span class="p">]</span>,</span><span class="param">	<span class="n">nominal_sample_rate_hz</span><span class="p">:</span> <span class="nb">float</span>,</span><span class="param">	<span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">channel_names</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>,</span><span class="param">	<span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
 
         
     </div>
@@ -1479,7 +1474,7 @@ values should remain stable for the lifetime of the driver instance.</p>
                             </div>
                             <div id="StreamDescriptor.payload_type" class="classattr">
                                 <div class="attr variable">
-            <span class="name">payload_type</span><span class="annotation">: Literal[&#39;line&#39;, &#39;plane&#39;, &#39;video&#39;]</span>
+            <span class="name">payload_type</span><span class="annotation">: Literal[&#39;signal&#39;, &#39;raster&#39;, &#39;field&#39;, &#39;video&#39;]</span>
 
         
     </div>
@@ -1524,20 +1519,7 @@ values should remain stable for the lifetime of the driver instance.</p>
     </div>
     <a class="headerlink" href="#StreamDescriptor.channel_names"></a>
     
-            <div class="docstring"><p>Optional channel labels, usually matching axis 0 for line payloads.</p>
-</div>
-
-
-                            </div>
-                            <div id="StreamDescriptor.unit" class="classattr">
-                                <div class="attr variable">
-            <span class="name">unit</span><span class="annotation">: str | None</span>
-
-        
-    </div>
-    <a class="headerlink" href="#StreamDescriptor.unit"></a>
-    
-            <div class="docstring"><p>Optional unit string, such as <code>"uV"</code> or <code>"m/s^2"</code>.</p>
+            <div class="docstring"><p>Optional channel labels, usually matching axis 0 for signal payloads.</p>
 </div>
 
 
@@ -1563,7 +1545,7 @@ values should remain stable for the lifetime of the driver instance.</p>
     </div>
     <a class="headerlink" href="#StreamDescriptor.metadata"></a>
     
-            <div class="docstring"><p>Additional driver- or device-specific metadata.</p>
+            <div class="docstring"><p>Additional metadata, including payload-specific fields such as <code>unit</code>.</p>
 </div>
 
 
