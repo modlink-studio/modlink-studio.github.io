@@ -138,7 +138,7 @@
                                 <a class="variable" href="#FrameEnvelope.device_id">device_id</a>
                         </li>
                         <li>
-                                <a class="variable" href="#FrameEnvelope.modality">modality</a>
+                                <a class="variable" href="#FrameEnvelope.stream_key">stream_key</a>
                         </li>
                         <li>
                                 <a class="variable" href="#FrameEnvelope.stream_id">stream_id</a>
@@ -151,9 +151,6 @@
                         </li>
                         <li>
                                 <a class="variable" href="#FrameEnvelope.seq">seq</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#FrameEnvelope.extra">extra</a>
                         </li>
                 </ul>
 
@@ -192,7 +189,7 @@
                                 <a class="variable" href="#StreamDescriptor.device_id">device_id</a>
                         </li>
                         <li>
-                                <a class="variable" href="#StreamDescriptor.modality">modality</a>
+                                <a class="variable" href="#StreamDescriptor.stream_key">stream_key</a>
                         </li>
                         <li>
                                 <a class="variable" href="#StreamDescriptor.stream_id">stream_id</a>
@@ -1101,8 +1098,8 @@ already finished by the time teardown returns.</p>
 </span><span id="FrameEnvelope-50"><a href="#FrameEnvelope-50"><span class="linenos">50</span></a>    <span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>
 </span><span id="FrameEnvelope-51"><a href="#FrameEnvelope-51"><span class="linenos">51</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Identifier of the device that produced this payload.&quot;&quot;&quot;</span>
 </span><span id="FrameEnvelope-52"><a href="#FrameEnvelope-52"><span class="linenos">52</span></a>
-</span><span id="FrameEnvelope-53"><a href="#FrameEnvelope-53"><span class="linenos">53</span></a>    <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="FrameEnvelope-54"><a href="#FrameEnvelope-54"><span class="linenos">54</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;High-level modality label for this payload, such as ``eeg`` or ``video``.&quot;&quot;&quot;</span>
+</span><span id="FrameEnvelope-53"><a href="#FrameEnvelope-53"><span class="linenos">53</span></a>    <span class="n">stream_key</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="FrameEnvelope-54"><a href="#FrameEnvelope-54"><span class="linenos">54</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Device-local stream key for this payload, such as ``eeg`` or ``video``.&quot;&quot;&quot;</span>
 </span><span id="FrameEnvelope-55"><a href="#FrameEnvelope-55"><span class="linenos">55</span></a>
 </span><span id="FrameEnvelope-56"><a href="#FrameEnvelope-56"><span class="linenos">56</span></a>    <span class="n">stream_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span><span id="FrameEnvelope-57"><a href="#FrameEnvelope-57"><span class="linenos">57</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived stable identifier of the stream that produced this payload.&quot;&quot;&quot;</span>
@@ -1119,13 +1116,10 @@ already finished by the time teardown returns.</p>
 </span><span id="FrameEnvelope-68"><a href="#FrameEnvelope-68"><span class="linenos">68</span></a>    <span class="n">seq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 </span><span id="FrameEnvelope-69"><a href="#FrameEnvelope-69"><span class="linenos">69</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional monotonically increasing sequence number.&quot;&quot;&quot;</span>
 </span><span id="FrameEnvelope-70"><a href="#FrameEnvelope-70"><span class="linenos">70</span></a>
-</span><span id="FrameEnvelope-71"><a href="#FrameEnvelope-71"><span class="linenos">71</span></a>    <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
-</span><span id="FrameEnvelope-72"><a href="#FrameEnvelope-72"><span class="linenos">72</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional extension metadata forwarded unchanged by the host.&quot;&quot;&quot;</span>
-</span><span id="FrameEnvelope-73"><a href="#FrameEnvelope-73"><span class="linenos">73</span></a>
-</span><span id="FrameEnvelope-74"><a href="#FrameEnvelope-74"><span class="linenos">74</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="FrameEnvelope-75"><a href="#FrameEnvelope-75"><span class="linenos">75</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">device_id</span> <span class="o">=</span> <span class="n">normalize_device_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">)</span>
-</span><span id="FrameEnvelope-76"><a href="#FrameEnvelope-76"><span class="linenos">76</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">modality</span> <span class="o">=</span> <span class="n">normalize_modality</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modality</span><span class="p">)</span>
-</span><span id="FrameEnvelope-77"><a href="#FrameEnvelope-77"><span class="linenos">77</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_id</span> <span class="o">=</span> <span class="n">make_stream_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modality</span><span class="p">)</span>
+</span><span id="FrameEnvelope-71"><a href="#FrameEnvelope-71"><span class="linenos">71</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="FrameEnvelope-72"><a href="#FrameEnvelope-72"><span class="linenos">72</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">device_id</span> <span class="o">=</span> <span class="n">normalize_device_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">)</span>
+</span><span id="FrameEnvelope-73"><a href="#FrameEnvelope-73"><span class="linenos">73</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_key</span> <span class="o">=</span> <span class="n">normalize_stream_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_key</span><span class="p">)</span>
+</span><span id="FrameEnvelope-74"><a href="#FrameEnvelope-74"><span class="linenos">74</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_id</span> <span class="o">=</span> <span class="n">make_stream_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_key</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1140,7 +1134,7 @@ UI consumers.</p>
                             <div id="FrameEnvelope.__init__" class="classattr">
                                 <div class="attr function">
             
-        <span class="name">FrameEnvelope</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">modality</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">timestamp_ns</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">data</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>,</span><span class="param">	<span class="n">seq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
+        <span class="name">FrameEnvelope</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">stream_key</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">timestamp_ns</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">data</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>,</span><span class="param">	<span class="n">seq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span>)</span>
 
         
     </div>
@@ -1162,15 +1156,15 @@ UI consumers.</p>
 
 
                             </div>
-                            <div id="FrameEnvelope.modality" class="classattr">
+                            <div id="FrameEnvelope.stream_key" class="classattr">
                                 <div class="attr variable">
-            <span class="name">modality</span><span class="annotation">: str</span>
+            <span class="name">stream_key</span><span class="annotation">: str</span>
 
         
     </div>
-    <a class="headerlink" href="#FrameEnvelope.modality"></a>
+    <a class="headerlink" href="#FrameEnvelope.stream_key"></a>
     
-            <div class="docstring"><p>High-level modality label for this payload, such as <code>eeg</code> or <code>video</code>.</p>
+            <div class="docstring"><p>Device-local stream key for this payload, such as <code>eeg</code> or <code>video</code>.</p>
 </div>
 
 
@@ -1225,19 +1219,6 @@ UI consumers.</p>
     <a class="headerlink" href="#FrameEnvelope.seq"></a>
     
             <div class="docstring"><p>Optional monotonically increasing sequence number.</p>
-</div>
-
-
-                            </div>
-                            <div id="FrameEnvelope.extra" class="classattr">
-                                <div class="attr variable">
-            <span class="name">extra</span><span class="annotation">: dict[str, object]</span>
-
-        
-    </div>
-    <a class="headerlink" href="#FrameEnvelope.extra"></a>
-    
-            <div class="docstring"><p>Optional extension metadata forwarded unchanged by the host.</p>
 </div>
 
 
@@ -1377,46 +1358,46 @@ by the driver and is passed back to <code>connect_device()</code> unchanged.</p>
 
     </div>
     <a class="headerlink" href="#StreamDescriptor"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="StreamDescriptor-80"><a href="#StreamDescriptor-80"><span class="linenos"> 80</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="StreamDescriptor-81"><a href="#StreamDescriptor-81"><span class="linenos"> 81</span></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamDescriptor</span><span class="p">:</span>
-</span><span id="StreamDescriptor-82"><a href="#StreamDescriptor-82"><span class="linenos"> 82</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Static metadata describing one stream exposed by a driver.</span>
-</span><span id="StreamDescriptor-83"><a href="#StreamDescriptor-83"><span class="linenos"> 83</span></a>
-</span><span id="StreamDescriptor-84"><a href="#StreamDescriptor-84"><span class="linenos"> 84</span></a><span class="sd">    Hosts may read descriptors before a device is connected. The returned</span>
-</span><span id="StreamDescriptor-85"><a href="#StreamDescriptor-85"><span class="linenos"> 85</span></a><span class="sd">    values should remain stable for the lifetime of the driver instance.</span>
-</span><span id="StreamDescriptor-86"><a href="#StreamDescriptor-86"><span class="linenos"> 86</span></a><span class="sd">    &quot;&quot;&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="StreamDescriptor-77"><a href="#StreamDescriptor-77"><span class="linenos"> 77</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="StreamDescriptor-78"><a href="#StreamDescriptor-78"><span class="linenos"> 78</span></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamDescriptor</span><span class="p">:</span>
+</span><span id="StreamDescriptor-79"><a href="#StreamDescriptor-79"><span class="linenos"> 79</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Static metadata describing one stream exposed by a driver.</span>
+</span><span id="StreamDescriptor-80"><a href="#StreamDescriptor-80"><span class="linenos"> 80</span></a>
+</span><span id="StreamDescriptor-81"><a href="#StreamDescriptor-81"><span class="linenos"> 81</span></a><span class="sd">    Hosts may read descriptors before a device is connected. The returned</span>
+</span><span id="StreamDescriptor-82"><a href="#StreamDescriptor-82"><span class="linenos"> 82</span></a><span class="sd">    values should remain stable for the lifetime of the driver instance.</span>
+</span><span id="StreamDescriptor-83"><a href="#StreamDescriptor-83"><span class="linenos"> 83</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-84"><a href="#StreamDescriptor-84"><span class="linenos"> 84</span></a>
+</span><span id="StreamDescriptor-85"><a href="#StreamDescriptor-85"><span class="linenos"> 85</span></a>    <span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="StreamDescriptor-86"><a href="#StreamDescriptor-86"><span class="linenos"> 86</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Stable device identifier in ``name.XX`` form.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-87"><a href="#StreamDescriptor-87"><span class="linenos"> 87</span></a>
-</span><span id="StreamDescriptor-88"><a href="#StreamDescriptor-88"><span class="linenos"> 88</span></a>    <span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="StreamDescriptor-89"><a href="#StreamDescriptor-89"><span class="linenos"> 89</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Stable device identifier in ``name.XX`` form.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-88"><a href="#StreamDescriptor-88"><span class="linenos"> 88</span></a>    <span class="n">stream_key</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="StreamDescriptor-89"><a href="#StreamDescriptor-89"><span class="linenos"> 89</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Device-local stream key, such as ``eeg``, ``accel``, or ``audio``.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-90"><a href="#StreamDescriptor-90"><span class="linenos"> 90</span></a>
-</span><span id="StreamDescriptor-91"><a href="#StreamDescriptor-91"><span class="linenos"> 91</span></a>    <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="StreamDescriptor-92"><a href="#StreamDescriptor-92"><span class="linenos"> 92</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;High-level modality label, such as ``eeg``, ``accel``, or ``audio``.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-91"><a href="#StreamDescriptor-91"><span class="linenos"> 91</span></a>    <span class="n">stream_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="StreamDescriptor-92"><a href="#StreamDescriptor-92"><span class="linenos"> 92</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived stable identifier for this stream.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-93"><a href="#StreamDescriptor-93"><span class="linenos"> 93</span></a>
-</span><span id="StreamDescriptor-94"><a href="#StreamDescriptor-94"><span class="linenos"> 94</span></a>    <span class="n">stream_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="StreamDescriptor-95"><a href="#StreamDescriptor-95"><span class="linenos"> 95</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Derived stable identifier for this stream.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-94"><a href="#StreamDescriptor-94"><span class="linenos"> 94</span></a>    <span class="n">payload_type</span><span class="p">:</span> <span class="n">PayloadType</span>
+</span><span id="StreamDescriptor-95"><a href="#StreamDescriptor-95"><span class="linenos"> 95</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Payload type used to interpret ``FrameEnvelope.data``.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-96"><a href="#StreamDescriptor-96"><span class="linenos"> 96</span></a>
-</span><span id="StreamDescriptor-97"><a href="#StreamDescriptor-97"><span class="linenos"> 97</span></a>    <span class="n">payload_type</span><span class="p">:</span> <span class="n">PayloadType</span>
-</span><span id="StreamDescriptor-98"><a href="#StreamDescriptor-98"><span class="linenos"> 98</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Payload type used to interpret ``FrameEnvelope.data``.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-97"><a href="#StreamDescriptor-97"><span class="linenos"> 97</span></a>    <span class="n">nominal_sample_rate_hz</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="StreamDescriptor-98"><a href="#StreamDescriptor-98"><span class="linenos"> 98</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Nominal sample rate in Hz.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-99"><a href="#StreamDescriptor-99"><span class="linenos"> 99</span></a>
-</span><span id="StreamDescriptor-100"><a href="#StreamDescriptor-100"><span class="linenos">100</span></a>    <span class="n">nominal_sample_rate_hz</span><span class="p">:</span> <span class="nb">float</span>
-</span><span id="StreamDescriptor-101"><a href="#StreamDescriptor-101"><span class="linenos">101</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Nominal sample rate in Hz.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-100"><a href="#StreamDescriptor-100"><span class="linenos">100</span></a>    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="StreamDescriptor-101"><a href="#StreamDescriptor-101"><span class="linenos">101</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Expected number of samples or frames per emitted chunk.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-102"><a href="#StreamDescriptor-102"><span class="linenos">102</span></a>
-</span><span id="StreamDescriptor-103"><a href="#StreamDescriptor-103"><span class="linenos">103</span></a>    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="StreamDescriptor-104"><a href="#StreamDescriptor-104"><span class="linenos">104</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Expected number of samples or frames per emitted chunk.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-103"><a href="#StreamDescriptor-103"><span class="linenos">103</span></a>    <span class="n">channel_names</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+</span><span id="StreamDescriptor-104"><a href="#StreamDescriptor-104"><span class="linenos">104</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional channel labels, usually matching axis 0 for signal payloads.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-105"><a href="#StreamDescriptor-105"><span class="linenos">105</span></a>
-</span><span id="StreamDescriptor-106"><a href="#StreamDescriptor-106"><span class="linenos">106</span></a>    <span class="n">channel_names</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
-</span><span id="StreamDescriptor-107"><a href="#StreamDescriptor-107"><span class="linenos">107</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional channel labels, usually matching axis 0 for signal payloads.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-106"><a href="#StreamDescriptor-106"><span class="linenos">106</span></a>    <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="StreamDescriptor-107"><a href="#StreamDescriptor-107"><span class="linenos">107</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional human-readable stream label.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-108"><a href="#StreamDescriptor-108"><span class="linenos">108</span></a>
-</span><span id="StreamDescriptor-109"><a href="#StreamDescriptor-109"><span class="linenos">109</span></a>    <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="StreamDescriptor-110"><a href="#StreamDescriptor-110"><span class="linenos">110</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional human-readable stream label.&quot;&quot;&quot;</span>
+</span><span id="StreamDescriptor-109"><a href="#StreamDescriptor-109"><span class="linenos">109</span></a>    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+</span><span id="StreamDescriptor-110"><a href="#StreamDescriptor-110"><span class="linenos">110</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Additional metadata, including payload-specific fields such as ``unit``.&quot;&quot;&quot;</span>
 </span><span id="StreamDescriptor-111"><a href="#StreamDescriptor-111"><span class="linenos">111</span></a>
-</span><span id="StreamDescriptor-112"><a href="#StreamDescriptor-112"><span class="linenos">112</span></a>    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
-</span><span id="StreamDescriptor-113"><a href="#StreamDescriptor-113"><span class="linenos">113</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Additional metadata, including payload-specific fields such as ``unit``.&quot;&quot;&quot;</span>
-</span><span id="StreamDescriptor-114"><a href="#StreamDescriptor-114"><span class="linenos">114</span></a>
-</span><span id="StreamDescriptor-115"><a href="#StreamDescriptor-115"><span class="linenos">115</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StreamDescriptor-116"><a href="#StreamDescriptor-116"><span class="linenos">116</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">device_id</span> <span class="o">=</span> <span class="n">normalize_device_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">)</span>
-</span><span id="StreamDescriptor-117"><a href="#StreamDescriptor-117"><span class="linenos">117</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">modality</span> <span class="o">=</span> <span class="n">normalize_modality</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modality</span><span class="p">)</span>
-</span><span id="StreamDescriptor-118"><a href="#StreamDescriptor-118"><span class="linenos">118</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_id</span> <span class="o">=</span> <span class="n">make_stream_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modality</span><span class="p">)</span>
-</span><span id="StreamDescriptor-119"><a href="#StreamDescriptor-119"><span class="linenos">119</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+</span><span id="StreamDescriptor-112"><a href="#StreamDescriptor-112"><span class="linenos">112</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StreamDescriptor-113"><a href="#StreamDescriptor-113"><span class="linenos">113</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">device_id</span> <span class="o">=</span> <span class="n">normalize_device_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">)</span>
+</span><span id="StreamDescriptor-114"><a href="#StreamDescriptor-114"><span class="linenos">114</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_key</span> <span class="o">=</span> <span class="n">normalize_stream_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_key</span><span class="p">)</span>
+</span><span id="StreamDescriptor-115"><a href="#StreamDescriptor-115"><span class="linenos">115</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_id</span> <span class="o">=</span> <span class="n">make_stream_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_key</span><span class="p">)</span>
+</span><span id="StreamDescriptor-116"><a href="#StreamDescriptor-116"><span class="linenos">116</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1430,7 +1411,7 @@ values should remain stable for the lifetime of the driver instance.</p>
                             <div id="StreamDescriptor.__init__" class="classattr">
                                 <div class="attr function">
             
-        <span class="name">StreamDescriptor</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">modality</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">payload_type</span><span class="p">:</span> <span class="n">PayloadType</span>,</span><span class="param">	<span class="n">nominal_sample_rate_hz</span><span class="p">:</span> <span class="nb">float</span>,</span><span class="param">	<span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">channel_names</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>,</span><span class="param">	<span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
+        <span class="name">StreamDescriptor</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">device_id</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">stream_key</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">payload_type</span><span class="p">:</span> <span class="n">PayloadType</span>,</span><span class="param">	<span class="n">nominal_sample_rate_hz</span><span class="p">:</span> <span class="nb">float</span>,</span><span class="param">	<span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">channel_names</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>,</span><span class="param">	<span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">factory</span><span class="o">&gt;</span></span>)</span>
 
         
     </div>
@@ -1452,15 +1433,15 @@ values should remain stable for the lifetime of the driver instance.</p>
 
 
                             </div>
-                            <div id="StreamDescriptor.modality" class="classattr">
+                            <div id="StreamDescriptor.stream_key" class="classattr">
                                 <div class="attr variable">
-            <span class="name">modality</span><span class="annotation">: str</span>
+            <span class="name">stream_key</span><span class="annotation">: str</span>
 
         
     </div>
-    <a class="headerlink" href="#StreamDescriptor.modality"></a>
+    <a class="headerlink" href="#StreamDescriptor.stream_key"></a>
     
-            <div class="docstring"><p>High-level modality label, such as <code>eeg</code>, <code>accel</code>, or <code>audio</code>.</p>
+            <div class="docstring"><p>Device-local stream key, such as <code>eeg</code>, <code>accel</code>, or <code>audio</code>.</p>
 </div>
 
 
